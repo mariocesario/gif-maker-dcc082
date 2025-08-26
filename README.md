@@ -1,74 +1,137 @@
-Visão Geral do Projeto
-Este projeto, intitulado "Criador de GIFs Animados a partir de Vídeo", é o Trabalho Prático 2 (TP2) da disciplina de Sistemas Multimídia da Universidade Federal de Juiz de Fora (UFJF). O objetivo é demonstrar a integração de técnicas de codificação, processamento e distribuição audiovisual em uma aplicação web funcional.
+Documentação Completa do Projeto
+Visão Geral
 
-A aplicação permite que um usuário faça o upload de um arquivo de vídeo, selecione um trecho específico e converta-o em um GIF animado.
+Este projeto, intitulado “Criador de GIFs Animados a partir de Vídeo”, corresponde ao Trabalho Prático 2 (TP2) da disciplina de Sistemas Multimídia da Universidade Federal de Juiz de Fora (UFJF).
+
+O objetivo central é demonstrar a integração de técnicas de codificação, transcodificação e distribuição audiovisual em uma aplicação web interativa e funcional.
+
+A aplicação permite que o usuário:
+
+Faça o upload de um vídeo.
+
+Selecione um trecho específico de sua escolha.
+
+Converta esse trecho em um GIF animado, pronto para visualização e download.
+
+Objetivos do Trabalho
+
+Implementar uma aplicação multimídia funcional utilizando tecnologias web.
+
+Demonstrar o uso prático de ferramentas de codificação e transcodificação de vídeo (FFmpeg).
+
+Oferecer ao usuário uma experiência simples e intuitiva para a criação de GIFs.
+
+Atender aos requisitos propostos pela disciplina: aplicação baseada na Web e transcodificação audiovisual.
 
 Requisitos Atendidos
-O projeto foi desenvolvido para atender aos seguintes requisitos do trabalho:
 
-Aplicação baseada na Web: A interface do usuário é totalmente funcional em um navegador, permitindo o upload e a interação diretamente no site.
+O projeto foi desenvolvido com foco em atender aos critérios mínimos solicitados no trabalho:
 
-Codificação e Transcodificação: O sistema utiliza a ferramenta FFmpeg para transcodificar o vídeo original em um arquivo de imagem animada (GIF).
+Aplicação baseada na Web: a interface roda integralmente em navegadores modernos, sem necessidade de instalação extra no cliente.
+
+Codificação e Transcodificação: o backend utiliza o FFmpeg para processar e converter trechos de vídeo em GIFs animados.
+
+Dessa forma, dois dos requisitos principais da disciplina são plenamente contemplados.
 
 Tecnologias e Arquitetura
-O projeto é dividido em duas partes principais: o frontend (interface do usuário) e o backend (servidor).
+
+O sistema é dividido em frontend e backend, com responsabilidades bem definidas.
 
 Frontend
-index.html: A estrutura base da página web, incluindo o formulário de upload, o player de vídeo, os seletores de tempo e os botões de controle.
 
-style.css: O arquivo de estilização que torna a interface visualmente agradável.
+index.html → Estrutura da interface: formulário de upload, player de vídeo, campos de tempo e botões de controle.
 
-script.js: A lógica JavaScript que lida com a interação do usuário. Ele gerencia o upload do arquivo, exibe a pré-visualização do vídeo, envia o arquivo e os parâmetros para o servidor e processa a resposta para exibir e disponibilizar o GIF para download.
+style.css → Estilização responsiva, proporcionando uma experiência visual clara e agradável.
+
+script.js → Lógica da aplicação no cliente: gerencia upload, pré-visualização, envio de dados ao servidor e exibição do GIF convertido.
 
 Backend
-O servidor, construído com Node.js e o framework Express, gerencia a comunicação com o frontend e o processamento do arquivo.
 
-server.js: O arquivo principal do servidor. Ele configura um endpoint para o upload de arquivos, usa o Multer para processar o formulário, e executa o FFmpeg via linha de comando para realizar a transcodificação. Após a conversão, o servidor envia o arquivo GIF de volta ao cliente.
+O servidor foi desenvolvido em Node.js, com suporte do framework Express.
+
+server.js → Arquivo principal do backend. Configura endpoints HTTP, utiliza Multer para upload de arquivos e invoca o FFmpeg via linha de comando para realizar a transcodificação. Após o processamento, envia o GIF resultante ao cliente.
 
 Fluxo de Execução
-O usuário seleciona e faz o upload de um vídeo através do formulário na página web.
 
-O script.js exibe o vídeo no player localmente.
+O usuário seleciona e envia um vídeo pelo formulário web.
 
-O usuário define os tempos de início e fim do trecho a ser convertido.
+O script.js exibe o vídeo no player local para pré-visualização.
 
-Ao clicar em "Gerar GIF", o script.js envia o vídeo e os tempos para o endpoint /upload no servidor.
+O usuário define os tempos de início e fim do trecho desejado.
 
-O server.js recebe os dados e executa um comando FFmpeg para cortar o vídeo e convertê-lo para GIF.
+Ao clicar em “Gerar GIF”, os dados são enviados ao servidor pelo endpoint /convert.
 
-O servidor envia o arquivo GIF de volta para o cliente.
+O server.js processa o upload, executa o FFmpeg para cortar e converter o trecho.
 
-O script.js exibe a pré-visualização do GIF na página e disponibiliza um link para download.
+O servidor envia o arquivo GIF de volta ao cliente.
 
-Como Rodar o Projeto
-Siga os passos abaixo para configurar e executar o projeto em sua máquina local.
+O script.js atualiza a página exibindo a prévia e disponibilizando o link de download.
 
+Resultados Obtidos
+
+O sistema foi testado com diferentes formatos de vídeo (MP4, AVI, MKV), apresentando resultados satisfatórios.
+
+O tempo de conversão é rápido em trechos curtos (até 15 segundos).
+
+A aplicação é responsiva e pode ser utilizada em navegadores modernos em desktops ou notebooks.
+
+O GIF gerado apresenta qualidade adequada para demonstrações e compartilhamentos simples.
+
+Limitações
+
+Tempo máximo recomendado: por questões de desempenho, a conversão de trechos muito longos pode causar demora significativa.
+
+Tamanho do arquivo de upload: atualmente limitado a 200 MB (configurável no servidor).
+
+Qualidade fixa do GIF: parâmetros como fps=10 e scale=320 foram definidos para equilibrar desempenho e qualidade, mas poderiam ser ajustados dinamicamente.
+
+Dependência do FFmpeg: é necessário que o binário esteja corretamente instalado e configurado no sistema operacional.
+
+Possíveis Extensões Futuras
+
+Adicionar personalização de parâmetros (resolução, fps, paleta de cores).
+
+Implementar suporte a compressão do GIF para reduzir o tamanho final.
+
+Permitir que o usuário insira legendas ou sobreposições de texto no GIF.
+
+Estender a aplicação para streaming em tempo real de trechos já convertidos.
+
+Disponibilizar a aplicação em nuvem, acessível sem necessidade de instalação local.
+
+Como Executar o Projeto
 Pré-requisitos
-Node.js: Verifique a instalação com node -v.
 
-FFmpeg: Verifique a instalação com ffmpeg -version.
+Node.js instalado
 
-Configuração e Execução
-Clone o Repositório:
+node -v
 
-Bash
+
+FFmpeg instalado
+
+ffmpeg -version
+
+Passo a passo
+
+Clone o repositório
 
 git clone https://github.com/mariocesario/gif-maker-dcc082.git
 
-Instale as Dependências:
-Acesse o diretório do projeto e instale as bibliotecas necessárias:
 
-Bash
+Instale as dependências
 
 cd gif-maker-dcc082
 npm install
 
-Inicie o Servidor:
-Execute o servidor em modo de desenvolvimento para que ele reinicie automaticamente a cada alteração:
 
-Bash
+Inicie o servidor em modo desenvolvimento
 
 npm run dev
 
-Acesse a Aplicação:
-Abra seu navegador e navegue até http://localhost:3000.
+
+Acesse a aplicação
+Abra o navegador em: http://localhost:3000
+
+Conclusão
+
+O Criador de GIFs Animados a partir de Vídeo demonstra, de forma prática, a integração de tecnologias multimídia em um ambiente web. O projeto comprova a aplicação de conceitos de codificação, transcodificação e interação multimídia, atendendo aos requisitos da disciplina e fornecendo uma solução funcional e extensível.
